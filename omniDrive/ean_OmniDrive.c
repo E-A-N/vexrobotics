@@ -18,30 +18,28 @@ const int WALL_DISTANCE = 200;
 
 void drive(int power = 127, int direction = 1, bool lateral = false)
 {
-  if (lateral) //Drive Left or Right
-	{
-	    motor[frontRightMotor]  =     power *    direction;
-	    motor[frontLeftMotor]   =     power *    direction;
-	    motor[backRightMotor]   =     power *   -direction;
-	    motor[backLeftMotor]    =     power *   -direction;
-  }
-  else        //Drive foward or backward
-	{
-	 		motor[frontRightMotor]  =     power *  direction;
-	    motor[frontLeftMotor]   =     power * -direction;
-	    motor[backRightMotor]   =     power *  direction;
-	    motor[backLeftMotor]    =     power * -direction;
-	}
+      if (lateral) //Drive Left or Right
+      {
+            motor[frontRightMotor]  =     power *    direction;
+            motor[frontLeftMotor]   =     power *    direction;
+            motor[backRightMotor]   =     power *   -direction;
+            motor[backLeftMotor]    =     power *   -direction;
+      }
+      else        //Drive foward or backward
+      {
+    	 	motor[frontRightMotor]  =     power *  direction;
+    	    motor[frontLeftMotor]   =     power * -direction;
+    	    motor[backRightMotor]   =     power *  direction;
+    	    motor[backLeftMotor]    =     power * -direction;
+      }
 }
 
 void turn(int power = 127, int direction = 1)
 {
-
     motor[frontRightMotor]  =     power *    -direction;
     motor[frontLeftMotor]   =     power *    -direction;
     motor[backRightMotor]   =     power *    -direction;
     motor[backLeftMotor]    =     power *    -direction;
-
 }
 
 void turnMeasure(int angle)
@@ -51,16 +49,16 @@ void turnMeasure(int angle)
 
 bool wallCheck()
 {
-			bool checkResult = false;
-    	if (sensorValue(upperLeftSonar) < WALL_DISTANCE && sensorVAlue(upperRightSonar) < WALL_DISTANCE)
-     	{		//Uppers Sensors detect Walls
-   				checkResult = True;
-    	}
-    	else if (sensorValue(lowerLeftSonar) < WALL_DISTANCE && sensorVAlue(lowerRightSonar) < WALL_DISTANCE)
-     	{		//Lower Sensors detect Walss
-   				checkResult = True;
-    	}
-    	return checkResult;
+	bool checkResult = false;
+	if (sensorValue(upperLeftSonar) < WALL_DISTANCE && sensorVAlue(upperRightSonar) < WALL_DISTANCE)
+ 	{		//Uppers Sensors detect Walls
+		checkResult = True;
+	}
+	else if (sensorValue(lowerLeftSonar) < WALL_DISTANCE && sensorVAlue(lowerRightSonar) < WALL_DISTANCE)
+ 	{		//Lower Sensors detect Walss
+		checkResult = True;
+	}
+	return checkResult;
 }
 
 void angleCompensation(int num)
@@ -70,46 +68,46 @@ void angleCompensation(int num)
 
 task main()
 {
-	//Calibrate the gyro sensor
-		SensorType[gyro] = sensorNone;
-		wait1Msec(1000);
-		SensorType[gyro] = sensorGyro;
-		wait1Msec(2000);
+   //Calibrate the gyro sensor
+	SensorType[gyro] = sensorNone;
+	wait1Msec(1000);
+	SensorType[gyro] = sensorGyro;
+	wait1Msec(2000);
 
-		while(true)
-		{
-				//Drive Function Paramters are int Power, int Direction, bool lateral
-				if (vexRT[Btn7U])
-		    {
-		        drive(127,1);
-		  	}
-		  	else if (vexRT[Btn7D])
-		    {
-		        drive(127,-1);
-		  	}
-		  	else if (vexRT[Btn7L])
-		    {
-		        drive(127,1,True);
-		  	}
-		  	else if (vexRT[Btn7R])
-		    {
-		        drive(127,-1,True);
-		  	}
-		  	else if (vexRT[Btn6U])
-		    {//Turn Right
-		        turn(127,1);
-		  	}
-		  	else if (vexRT[Btn5U])
-		    {//Turn Left
-		        turn(127,-1);
-		  	}
-		  	else if (vexRT[Btn8U] && !wallCheck())
-		    {
-		        drive(127,1);
-		  	}
-		  	else
-			  {
-						drive(0);
-			  }
-		 }
+	while(true)
+	{
+			//Drive Function Paramters are int Power, int Direction, bool lateral
+		if (vexRT[Btn7U])
+	    {
+	        drive(127,1);
+	  	}
+	  	else if (vexRT[Btn7D])
+	    {
+	        drive(127,-1);
+	  	}
+	  	else if (vexRT[Btn7L])
+	    {
+	        drive(127,1,True);
+	  	}
+	  	else if (vexRT[Btn7R])
+	    {
+	        drive(127,-1,True);
+	  	}
+	  	else if (vexRT[Btn6U])
+	    {//Turn Right
+	        turn(127,1);
+	  	}
+	  	else if (vexRT[Btn5U])
+	    {//Turn Left
+	        turn(127,-1);
+	  	}
+	  	else if (vexRT[Btn8U] && !wallCheck())
+	    {
+	        drive(127,1);
+	  	}
+	  	else
+		  {
+					drive(0);
+		  }
+	 }
 }

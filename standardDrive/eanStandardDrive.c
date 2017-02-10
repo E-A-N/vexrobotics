@@ -43,7 +43,7 @@ void autoForward(int direction)
 
 void autoTimeForward(int time)
 {
-		motor[leftMotor]  =  127;
+	motor[leftMotor]  =  127;
     motor[rightMotor] = -127;
   	wait1Msec(time);
   	motor[leftMotor]  =  0;
@@ -55,45 +55,44 @@ void autoTimeForward(int time)
 //The Sign Function Transforms any positive number to 1 or any negative number to -1
 int sign(int num)
 {
-
     if (num > 0)
     {
-    		return 1;
+    	return 1;
   	}
   	else if (num < 0)
   	{
-  			return -1;
-		}
-		else
-		{
-				return 0;
-		}
+  		return -1;
+	}
+	else
+	{
+		return 0;
+	}
 }
 
 void quickTurn(int angle, int speed)
 {
-	  SensorValue[gyro] = 0;
+	SensorValue[gyro] = 0;
     switch(angle)
     {
-    		case RIGHT_ANGLE:
-				case U_TURN:
-				//abs make any number positive ie abs(-1000 = 100
-		    		while( abs(SensorValue[gyro]) < angle )
-		    		{
-				    		motor[rightMotor] =    speed;
-								motor[leftMotor] =   	-speed;
-		    	  }
-		    	  break;
+		case RIGHT_ANGLE:
+		case U_TURN:
+    		//abs make any number positive ie abs(-1000 = 100
+    		while( abs(SensorValue[gyro]) < angle )
+        	{
+    		      motor[rightMotor] =    speed;
+    		      motor[leftMotor]  =   	-speed;
+        	}
+        	break;
 
-				//Reverse Angles
-				case -RIGHT_ANGLE:
-				case -U_TURN:
-						while (abs(SensorValue[gyro]) < abs(angle))
-						{
-								motor[rightMotor] =    -speed;
-								motor[leftMotor] =   	  speed;
-						}
-						break;
+		//Reverse Angles
+		case -RIGHT_ANGLE:
+		case -U_TURN:
+    		while (abs(SensorValue[gyro]) < abs(angle))
+    		{
+    				motor[rightMotor] =    -speed;
+    				motor[leftMotor] =   	  speed;
+    		}
+    		break;
     }
     //stop the motors and cool down
     angle = angle > 0 ? 1 : -1;
@@ -113,11 +112,11 @@ void quickTurn(int angle, int speed)
 }
 task main()
 {
-		//Calibrate the gyro sensor
-		SensorType[gyro] = sensorNone;
-		wait1Msec(1000);
-		SensorType[gyro] = sensorGyro;
-		wait1Msec(2000);
+        //Calibrate the gyro sensor
+        SensorType[gyro] = sensorNone;
+        wait1Msec(1000);
+        SensorType[gyro] = sensorGyro;
+        wait1Msec(2000);
 	  SensorValue[rightShaftEncoder] = 0;
 	  SensorValue[leftShaftEncoder] = 0;
 

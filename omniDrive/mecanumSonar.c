@@ -85,7 +85,7 @@ void drive(int speed, int turn, int strafe, int distanceEncoder)
 	if(useGyro)SensorValue(gyro) = 0;
 
 	while(abs(nMotorEncoder(driveLeftBack)) < distanceEncoder &&
-		abs(nMotorEncoder(driveLeftFront)) < distanceEncoder &&
+	abs(nMotorEncoder(driveLeftFront)) < distanceEncoder &&
 	abs(nMotorEncoder(driveRightBack)) < distanceEncoder &&
 	abs(nMotorEncoder(driveRightFront)) < distanceEncoder)
 	{
