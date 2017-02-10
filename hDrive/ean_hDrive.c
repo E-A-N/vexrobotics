@@ -15,10 +15,10 @@ void moveArm(int speed)
 //+++++++++++++++++++++++++++++++++++++++++++++| MAIN |+++++++++++++++++++++++++++++++++++++++++++++++
 task main()
 {
-		while(true)
-		{
-		    motor[leftMotor] = VexRT[ch3];
-		  	motor[rightMotor] = -VexRT[ch2];
-		}
+	while(true)
+	{
+	    motor[leftMotor] = VexRT[ch3];
+		motor[rightMotor] = -VexRT[ch2];
+	}
 }
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++mmmmdnnnnnnnnnnnnnn
