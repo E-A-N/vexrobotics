@@ -10,48 +10,48 @@ int turnSpd = 50;
 int turn;
 
 void topRightDrive(int power){
-		motor(frontRightDriveA) = power;
-		motor(frontRightDriveB) = power;
-		motor(frontRightDriveC) = power;
+	motor(frontRightDriveA) = power;
+	motor(frontRightDriveB) = power;
+	motor(frontRightDriveC) = power;
 }
 
 void backLeftDrive(int power){
-		motor(backLeftDriveD) = power;
-		motor(backLeftDriveE) = power;
-		motor(backLeftDriveF) = power;
+	motor(backLeftDriveD) = power;
+	motor(backLeftDriveE) = power;
+	motor(backLeftDriveF) = power;
 }
 
 void drive(int speed, int turn, int strafe) {
-	  //speed  = -speed;    //reverse speed until ports are rearranged
-		//strafe = -strafe;   //reverse strafe until ports are rearranged
-	  //motor(leftFrontDrive) = speed + turn + strafe;
-		//motor(leftBackDrive) = speed + turn - strafe;
-		//motor(rightFrontDrive) = speed - turn - strafe;
-		//motor(rightBackDrive) = speed - turn + strafe;
+  	//speed  = -speed;    //reverse speed until ports are rearranged
+	//strafe = -strafe;   //reverse strafe until ports are rearranged
+ 	 //motor(leftFrontDrive) = speed + turn + strafe;
+	//motor(leftBackDrive) = speed + turn - strafe;
+	//motor(rightFrontDrive) = speed - turn - strafe;
+	//motor(rightBackDrive) = speed - turn + strafe;
 
-		topRightDrive(speed + turn + strafe);
-		backLeftDrive(speed - turn + strafe);
+	topRightDrive(speed + turn + strafe);
+	backLeftDrive(speed - turn + strafe);
 }
 
 task main() {
 
-		while(true){
-				int speed = (abs(vexRT(Ch3))<20) ? 0 : vexRT(Ch3);
-				int turn = (abs(vexRT(Ch1))<20)? 0 : vexRT(Ch1);
-				int strafe = (abs(vexRT(Ch4))<20)? 0 : vexRT(Ch4);
+	while(true){
+			int speed = (abs(vexRT(Ch3))<20) ? 0 : vexRT(Ch3);
+			int turn = (abs(vexRT(Ch1))<20)? 0 : vexRT(Ch1);
+			int strafe = (abs(vexRT(Ch4))<20)? 0 : vexRT(Ch4);
 
-				/*
-				if (vexRT(btn8L)){
-						turn = -turnSpd;
-				}
-				else if (vexRT(btn8R)){
-						turn = turnSpd;
-				}
-				else {
-						turn = 0;
-				}
-				*/
+			/*
+			if (vexRT(btn8L)){
+					turn = -turnSpd;
+			}
+			else if (vexRT(btn8R)){
+					turn = turnSpd;
+			}
+			else {
+					turn = 0;
+			}
+			*/
 
-				drive(speed,turn,strafe);
-		}
+			drive(speed,turn,strafe);
+	}
 }
