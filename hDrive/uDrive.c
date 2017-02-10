@@ -6,19 +6,19 @@
 
 void drive(int flm, int blm, int frm, int brm)
 {
-		motor[frontLeftMotor]  =  flm;
-		motor[backLeftMotor]   = 	blm;
-		motor[frontRightMotor] =  frm;
-		motor[backRightMotor]  =  brm;
+	motor[frontLeftMotor]  =  flm;
+	motor[backLeftMotor]   = 	blm;
+	motor[frontRightMotor] =  frm;
+	motor[backRightMotor]  =  brm;
 }
 
 
 task main()
 {
-		while(true)
-		{
-				drive(vexRT[ch3],vexRT[ch1],-vexRT[ch3],vexRT[ch1]);
+	while(true)
+	{
+			drive(vexRT[ch3],vexRT[ch1],-vexRT[ch3],vexRT[ch1]);
 
-		}
+	}
 
 }
